@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <link rel="stylesheet" href="../static/css/style.css" type="text/css"/>
+
+        <title>TITLE</title>
+    </head>
+    <body>
+        <svg id="person" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+            <g><path d="M943.2,945.5c0,24.5-19.9,43.9-44.5,44.5c-37.1,0.8-45.7-45-45.7-45c-21.1-172.3-165.1-306.3-341.8-311.9c-3.8,0.2-7.6,0.6-11.4,0.6s-7.6-0.4-11.4-0.6C311.8,638.8,167.9,772.7,146.8,945c0,0-4.8,45-45.5,45c-24.5,0-44.5-19.9-44.5-44.5c0,0,0.8-15.6,2.8-20.7C82,769.2,184.3,639.5,324.1,579.3C242,523.1,188,428.8,188,321.8C188,149.6,327.6,10,499.8,10C672,10,811.6,149.6,811.6,321.8c0,106.9-53.9,201.2-136,257.4C816.7,640,919.8,771.5,940.8,929.1c1.1,3.9,1.9,8,1.9,12.2L943.2,945.5L943.2,945.5z M722.5,321.9c0-123-99.7-222.7-222.7-222.7c-123,0-222.7,99.7-222.7,222.7c0,123,99.7,222.7,222.7,222.7C622.8,544.7,722.5,444.9,722.5,321.9L722.5,321.9z"></path></g>
+        </svg>
+        <div class="navbar" th:fragment="navbar">
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">BrokenEventApplication</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a th:href="@{'/event'}">Events</a></li>
+                            <li sec:authorize="hasRole('ADMIN')"><a th:href="@{'/user'}">Users</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li sec:authorize="isAuthenticated()">
+                                <a class="pull-left" sec:authorize="!hasRole('ADMIN')" th:href="@{'/user/' + ${#authentication.principal.domainUserObject.id}}" th:text="${#authentication.name}"></a>
+                                <a class="pull-right" th:href="@{'/logout'}">Logout</a>
+                            </li>
+                            <li sec:authorize="!isAuthenticated()"><a th:href="@{'/login'}">Login</a></li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div>
+    </body>
+</html>

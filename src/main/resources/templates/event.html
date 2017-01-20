@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:include="head :: head('BEA - Event ' + ${event.eventName})">
+        <title>TITLE</title>
+    </head>
+    <body>
+        <div th:include="navbar :: navbar"></div>
+        <div class="container">
+            <h1 th:text="${event.eventName + ' :: ' + #dates.format(event.eventDate, 'dd.MM.yyyy')}">EVENT NAME :: EVENT DATE</h1>
+            <p>Event organized by <span th:text="${event.organizer.username}">EVENT ORGANIZER</span></p>
+            <form class="form-horizontal" action="#" th:action="@{'/attend-event/' + ${event.id}}"  method="POST">
+                <button type="submit" class="btn btn-primary">Attend this event</button>
+            </form>
+            <h2>Attendee list:</h2>
+            <ul th:each="attendee : ${event.attendees}">
+                <li th:text="${attendee.username}">ATTENDEE</li>
+            </ul>
+        </div>
+        <div th:replace="footer :: footer">FOOTER</div>
+    </body>
+</html>

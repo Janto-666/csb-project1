@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:include="head :: head('Welcome to BEA')">
+        <link rel="stylesheet" href="../static/css/style.css" type="text/css"/>
+
+        <title>TITLE</title>
+    </head>
+    <body>
+        <div th:include="navbar :: navbar"></div>
+        <div class="container">
+            <div>
+                <h1>Welcome <span class="username" sec:authorize="isAuthenticated()" th:text="${#authentication.name}">LOGGED IN USER</span> to <span class="em">Broken Event Application</span></h1>
+                <p>Browse awesome events and register to join them. You can even create events yourself!</p>
+            </div>
+        </div>
+    </body>
+</html>

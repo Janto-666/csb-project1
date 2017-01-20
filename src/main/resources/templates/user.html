@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:include="head :: head('BEA - User ' + ${user.username})">
+        <title>TITLE</title>
+    </head>
+    <body>
+        <div th:include="navbar :: navbar"></div>
+        <div class="container">
+            <h1 th:text="${user.username}">USER</h1>
+            <div class="user-info">
+                <p th:text="'Email: ' + ${user.emailAddress}"></p>
+                <p th:utext="'Description: ' + ${user.description}"></p>
+            </div>
+            <p>Organized events:</p>
+            <ul th:each="event : ${user.organizedEvents}">
+                <li>
+                    <a th:href="@{'/event/' + ${event.id}}" th:text="${event.eventName}">NAME</a>
+                    <span class="date" th:text="${#dates.format(event.eventDate, 'dd.MM.yyyy')}">DATE</span>
+                </li>
+            </ul>
+
+            <p>Attended events:</p>
+            <ul th:each="event : ${user.attendedEvents}">
+                <li>
+                    <a th:href="@{'/event/' + ${event.id}}" th:text="${event.eventName}">NAME</a>
+                    <span class="date" th:text="${#dates.format(event.eventDate, 'dd.MM.yyyy')}"></span>
+                </li>
+            </ul>
+        </div>
+        <div th:replace="footer :: footer">FOOTER</div>
+    </body>
+</html>

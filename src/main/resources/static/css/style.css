@@ -1,0 +1,37 @@
+body {
+    font-size: 12px;
+    margin: 1em;
+    padding: 1em;
+}
+#footer {
+    text-align: center;
+    width: 100%;
+}
+#footer p {
+    margin: 10px;
+}
+ul {
+    margin: 1em;
+    padding: 0px;
+}
+ul li {
+    list-style-type: none;
+}
+
+.date {
+    font-size: 0.8em; 
+}
+
+.user-info {
+    border: 2px dashed lightblue;
+    border-radius: 10px;
+    width: 40%;
+    min-height: 50px;
+    padding: 1em;
+    margin-bottom: 0.5em;
+}
+
+h1 span.username {
+    font-style: italic;
+    color: #666;
+}
