@@ -31,7 +31,7 @@ public class LegacyEventRepository {
         String queryString = 
                 "insert into event(event_name, event_date, organizer_id) " +
                 "values(:name, :date, :organizer)";
-        Query q = em.createQuery(queryString);
+        Query q = em.createNativeQuery(queryString);
         q.setParameter("name", eventName);
         q.setParameter("date", eventDate);
         q.setParameter("organizer", organizingUserId);

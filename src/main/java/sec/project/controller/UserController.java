@@ -15,7 +15,7 @@ public class UserController {
     private UserRepository userRepository;
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public String listEvents(Model model) {
+    public String listUsers(Model model) {
         model.addAttribute("users", userRepository.findAllByOrderByUsername());
         return "user-list";
     }
